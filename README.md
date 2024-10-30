@@ -1,3 +1,5 @@
+> This badge reflects the status of the CI workflow, which runs checks, builds the project, and uploads the binary artifact if successful.
+[![CI](https://github.com/nogibjj/Nzarama_Kouadio_DE_Individual_Project2/actions/workflows/CI.yml/badge.svg)](https://github.com/nogibjj/Nzarama_Kouadio_DE_Individual_Project2/actions/workflows/CI.yml)
 
 # Rust CLI Project: CRUD Operations with SQLite
 
