@@ -19,7 +19,10 @@ impl Database {
             .map(|col| format!("{} TEXT", col))
             .collect::<Vec<String>>()
             .join(", ");
-        let sql = format!("CREATE TABLE IF NOT EXISTS {} (id INTEGER PRIMARY KEY, {})", table_name, columns_sql);
+        let sql = format!(
+            "CREATE TABLE IF NOT EXISTS {} (id INTEGER PRIMARY KEY, {})",
+            table_name, columns_sql
+        );
         self.conn.execute(&sql, [])?;
         println!("Table '{}' created!", table_name);
         Ok(())
@@ -29,7 +32,8 @@ impl Database {
     pub fn insert_row(&self, table_name: &str, values: Vec<&str>) -> Result<()> {
         let placeholders = vec!["?"; values.len()].join(", ");
         let sql = format!("INSERT INTO {} VALUES (NULL, {})", table_name, placeholders);
-        let params: Vec<&dyn rusqlite::ToSql> = values.iter().map(|v| v as &dyn rusqlite::ToSql).collect();
+        let params: Vec<&dyn rusqlite::ToSql> =
+            values.iter().map(|v| v as &dyn rusqlite::ToSql).collect();
         self.conn.execute(&sql, params.as_slice())?;
         println!("Data inserted into '{}'", table_name);
         Ok(())
@@ -40,7 +44,7 @@ impl Database {
         let sql = format!("SELECT * FROM {}", table_name);
         let mut stmt = self.conn.prepare(&sql)?;
 
-        let column_count = stmt.column_count();  // Get the number of columns
+        let column_count = stmt.column_count(); // Get the number of columns
         let rows = stmt.query_map([], |row| {
             let mut result = Vec::new();
             for i in 0..column_count {
@@ -66,4 +70,3 @@ impl Database {
         Ok(())
     }
 }
-
