@@ -136,4 +136,4 @@ By using ChatGPT, I could navigate the challenges of working with Rust more effe
 
 ## Video
 
-Here is a YouTube link showcasing a walkthrough of my CLI binary: 
+Here is a YouTube link showcasing a walkthrough of my CLI: https://youtu.be/gROvQ8qNXIs 
